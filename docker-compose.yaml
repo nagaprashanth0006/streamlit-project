@@ -1,0 +1,9 @@
+services:
+  rag-kb:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: rag-kb
+    container_name: rag-kb
+    ports:
+      - "8501:8501"
