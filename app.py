@@ -7,7 +7,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.llms import Ollama
 from langchain.chains import ConversationalRetrievalChain
 
-OLLAMA_BASE_URL = "http://localhost:11434"
+OLLAMA_BASE_URL = "http://ollama:11434"
 MODEL_NAME = "llama3.2:latest"
 PDF_DIRECTORY = "./pdfs"
 DB_DIRECTORY = "./chroma_db"

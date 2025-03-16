@@ -1,9 +1,27 @@
 services:
+  ollama:
+    image: ollama/ollama:latest
+    hostname: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - "D:/Dev/ollama-models:/root/.ollama/models"
+    networks:
+      - ragkb-network
   rag-kb:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
     image: rag-kb
+    depends_on:
+      - ollama
     container_name: rag-kb
     ports:
       - "8501:8501"
+    networks:
+      - ragkb-network
+
+networks:
+  ragkb-network:
+    driver: bridge
+    name: ragkb-network
