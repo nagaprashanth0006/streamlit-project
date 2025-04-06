@@ -25,3 +25,4 @@ networks:
   ragkb-network:
     driver: bridge
     name: ragkb-network
+    
