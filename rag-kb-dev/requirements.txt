@@ -1,0 +1,8 @@
+llama-index
+sentence-transformers
+PyMuPDF
+gradio
+faiss-cpu
+langchain
+pandas
+langchain-cpu

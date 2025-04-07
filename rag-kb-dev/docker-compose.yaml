@@ -1,0 +1,42 @@
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]  # optional GPU
+
+  rag-app:
+    build: .
+    container_name: rag-app
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - ./app/docs:/app/docs
+    ports:
+      - "7860:7860"
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]  # optional
+    networks:
+      - rag-net
+
+volumes:
+  ollama_data:
+
+networks:
+  rag-net:
+    driver: bridge
